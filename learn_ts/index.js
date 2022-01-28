@@ -1,66 +1,76 @@
-// class Person {
-//     private name: string
-//     protected age: number
-//     static see = 11
-//     constructor (name: string, age:  number) {
-//         this.name =  name
-//         this.age  = age
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-//         console.log(this.name)
-//     }
-//     eat () {
-//         console.log(`${this.name}eat  something`)
-//     }
-//     static sss () {
-//         console.log(this, this.see, '类里面的静态方法')
-//     }
-// }
-// class Student extends Person {
-//     grade: number
-//     constructor (name: string, age: number, grade:  number) {
-//         super(name, age)
-//         this.grade = grade
-//     }
-//     eat () {
-//         console.log('Student类的eat', Student.see)
-//     }
-// }
-// const s1 = new Student('hh', 12, 3)
-// s1.eat()
-// Student.sss()
-// console.log(typeof Student.sss, typeof Student.see)
-var Animal = /** @class */ (function () {
-    function Animal(name) {
-        this.name = name;
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var a;
+(function (a) {
+    //当装饰器作为修饰类的时候，会把构造器传递进去
+    function addNameEat(constructor) {
+        constructor.prototype.name = "hello";
+        constructor.prototype.eat = function () {
+            console.log("eat");
+        };
     }
-    Animal.prototype.eat = function () {
-        console.log(this.name, "eat something");
-    };
-    return Animal;
-}());
-var Cat = /** @class */ (function (_super) {
-    __extends(Cat, _super);
-    function Cat(name) {
-        return _super.call(this, name) || this;
+    var Person = /** @class */ (function () {
+        function Person() {
+        }
+        Person = __decorate([
+            addNameEat
+        ], Person);
+        return Person;
+    }());
+    var p = new Person();
+    console.log(p.name);
+    p.eat();
+})(a || (a = {}));
+var b;
+(function (b) {
+    //还可以使用装饰器工厂 这样可以传递额外参数
+    function addNameEatFactory(name) {
+        return function (constructor) {
+            constructor.prototype.name = name;
+            constructor.prototype.eat = function () {
+                console.log("eat");
+            };
+        };
     }
-    Cat.prototype.speak = function () {
-        console.log("喵喵喵");
-    };
-    return Cat;
-}(Animal));
-// let animal = new Animal(); //直接报错 无法创建抽象类的实例
-var cat = new Cat('jjj');
-cat.speak();
-cat.eat();
+    var Person = /** @class */ (function () {
+        function Person() {
+        }
+        Person = __decorate([
+            addNameEatFactory("hello")
+        ], Person);
+        return Person;
+    }());
+    var p = new Person();
+    console.log(p.name);
+    p.eat();
+})(b || (b = {}));
+var c;
+(function (c) {
+    //还可以替换类,不过替换的类要与原类结构相同
+    function enhancer(constructor) {
+        return /** @class */ (function () {
+            function class_1() {
+                this.name = "jiagou";
+            }
+            class_1.prototype.eat = function () {
+                console.log("吃饭饭");
+            };
+            return class_1;
+        }());
+    }
+    var Person = /** @class */ (function () {
+        function Person() {
+        }
+        Person = __decorate([
+            enhancer
+        ], Person);
+        return Person;
+    }());
+    var p = new Person();
+    console.log(p.name);
+    p.eat();
+})(c || (c = {}));

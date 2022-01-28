@@ -4,3 +4,8 @@ Promise有哪三种状态，如何变化
 场景题-Promise then和catch的连接
 promise 和 setTimeout顺序
 场景题 async/await的顺序问题
+
+
+
+ts
+接口和类型别名的区别
