@@ -22,3 +22,5 @@ BOM Browser Object Model 浏览器对象模型
     history  history.back() forward() 前进后退
 
 事件
+    事件绑定
+    事件冒泡
