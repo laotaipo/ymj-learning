@@ -17,6 +17,15 @@ attr和property的区别
 描述事件冒泡流程
 无限下拉的图片列表，如何监听每个图片的点击
 
+手写一个简易的ajax
+跨域的常见实现方式
+
+描述cookie localStorage sessionStorage 区别
+
+http常见状态码有哪些
+http常见的header有哪些
+什么是Restful API
+描述下http缓存机制（重要）
 
 ts
 接口和类型别名的区别

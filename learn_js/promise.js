@@ -31,6 +31,27 @@ const url = "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fbj-yuantu.fot
 // })
 // // 1 2
 
+// const p = new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//         const a = Math.random() * 10
+//         if (a > 5) {
+//             resolve(a)
+//             console.log('a----resolve', a)
+//         } else {
+//             reject(new Error('error'))
+//             console.log('a-----reject', a)
+//         }
+//     }, 20)
+// })
+
+// p.then(a => {
+//     console.log('then----', a)
+// }).catch(e => {
+//     console.log('catch----', e)
+// })
+
+// 说明resolve reject后的代码依然会执行
+
 const p = new Promise((resolve, reject) => {
     setTimeout(() => {
         const a = Math.random() * 10
@@ -43,11 +64,11 @@ const p = new Promise((resolve, reject) => {
         }
     }, 20)
 })
-
-p.then(a => {
-    console.log('then----', a)
-}).catch(e => {
-    console.log('catch----', e)
+p.then(res => {
+    console.log('~~~', res)
+}).catch(err => {
+    throw new Error('fff')
+    console.log(err)
+}).then(res => {
+    console.log('!!!!', res)
 })
-
-// 说明resolve reject后的代码依然会执行
