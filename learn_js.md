@@ -146,4 +146,29 @@ http
             If-Modified-Since
             Etag
             If-None-Match
-            
+    强制缓存
+        Cache-Control 在response headers中，控制强制缓存的逻辑，例：Cache-Control: max-age=31536000（单位秒）
+        Cache-Control的值
+            max-age 缓存最大过期时间
+            no-cache 不用强制缓存
+            no-store 不用强制缓存 ，也不用服务端做缓存
+            private
+            public
+        Expires 在response header中，同为控制缓存过期，已被Cache-Control代替
+    协商缓存
+        服务端缓存策略
+        服务器判断客户端资源，是否和服务器资源一样
+        一致则返回304，否则返回200和最新的资源
+        资源标识
+            在response headers中，有两种
+            Last-Modified 资源的最后修改时间，If-Modified-Since 在request headers中
+            Etag 资源的唯一标识（一个字符串，类似人类的指纹），If-None-Match 在request headers中
+            Last-Modified、Etag共存会优先使用Etag，因为Last-Modified只能精确到秒级
+            如果资源被重复生成而内容不变，Etag也不变 更高效一些
+    三种刷新操作
+        正常操作：地址栏树输入url 跳转链接 前进后退等
+        手动刷新：F5、点击刷新按钮、右击菜单刷新
+        强制刷新：ctrl + F5
+    正常操作：强制缓存有效、协商缓存有效
+    手动刷新：强制缓存失效、协商缓存有效
+    强制刷新：强制缓存失效、协商缓存失效
