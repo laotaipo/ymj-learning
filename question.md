@@ -27,5 +27,11 @@ http常见的header有哪些
 什么是Restful API
 描述下http缓存机制（重要）
 
+从输入url到渲染出整个页面的过程
+window.onload 和 DOMContentLoaded的区别
+
+防抖节流
+常见的web攻击方式有哪些
+
 ts
 接口和类型别名的区别

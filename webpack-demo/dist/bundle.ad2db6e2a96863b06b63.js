@@ -1,0 +1,1 @@
+(()=>{"use strict";console.log("fn"),console.log("b",{name:"zhangsan"})})();
