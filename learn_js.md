@@ -53,13 +53,44 @@ call apply会直接执行 bind会返回一个新函数
 缓存数据  隐藏数据，只提供API 感觉和Class有些相似
 
 模块
-    CommonJS
-    AMD
-    ES6模块的设计思想是尽量的静态化，使得编译时就能确定模块的依赖关系，以及输入和输出变量
+    模块加载方式 CommonJS AMD
+    ES6模块的设计思想是尽量的静态化，使得编译时就能确定模块的依赖关系，以及输入和输出变量， import和export命令只能在模块的顶层，不能在代码块之中
     CommonJS和AMD模块，都只能在运行时确定这些东西，比如commonJS模块就是对象，输入时必须查找对象属性，没有办法 在编译时做“静态优化”
     ES6模块不是对象，而是通过export命令显示指定输出的代码，再通过import输入
-    ES6模块自动采用严格模式
-
+    import
+        es6import命令输入的变量是只读的，因为本质是输入接口。也就是说不许在加载模块的脚本里改写接口，但是可以修改例如对象属性。建议凡事输入的变量，都当作完全只读，不要轻易改变它的属性
+        ES6模块自动采用严格模式
+        import命令有提升效果，会提升到整个模块的头部，首先执行
+        由于import是静态执行，所以不能使用表达式和变量这些只有在运行时才能得到结果的语法结构
+        import语句会执行所加载的模块 import 'lodash',如果多次import只会执行一次
+        import语句是Singleton模式
+        目前通过babel转码，require和import可以写在同一模块里，但最好不这样做。因为import在动态解析阶段执行，所以他是一个模块中最早执行的
+    export default
+        export default的本质是将后面的变量赋值给变量default
+    模块的继承
+    跨模块常量
+        index.js里面 export * from './media'
+    动态加载
+        import()函数支持动态加载，返回promise
+        import()函数可以用在任何地方，不仅仅是模块，非模块脚本也可以使用，它是在运行时执行，也就是说什么时候运行到这一句，就会加载指定模块
+        import()类似于Node的require方法，但import()是异步加载require是同步执加载
+        import 可放在条件语句中，参数可以是变量或表达式
+        import加载模块成功后，这个模块会作为一个对象当作then方法的参数
+浏览器模块的加载
+    script标签
+        默认同步，defer和async属性可以异步加载
+        defer和async区别：defer是渲染完再执行，async是下载完就执行。如果有多个defer脚本会按照再在页面出现的顺序顺序加载，而多个async无法保证加载顺序
+    加载规则
+        浏览器加载es6模块，也使用script标签 但是要加上type="module"
+        浏览器对于带有type=module的<script>会采用异步加载，等同于defer
+node模块加载
+    浏览器现在有两种模块，一种是es6模块，简称ESM，另一种是commonJS，简称CJS
+    CommonJS是nodejs专用，与ES6模块不兼容。他们采用不同的加载方案，从nodejs13.2版本开始，nodeJS默认打开了es6模块支持
+    nodeJS模块要求es6模块采用 .mjs后缀，nodejs遇到.mjs就会认为是es6模块，默认启用严格模式，如果不希望用.mjs可以在package.json中配置"type": "module"，如果这是还需呀使用nodejs模块，需要把
+es6模块和commonJS的差异
+    CommonJS模块输出的是一个值的（浅）拷贝，ES6模块输出的是值的引用
+        JS引擎对脚本进行静态分析时，遇到import会生成一个只读引用，等到脚本真的执行时，再根据这个只读引用，到被加载的模块里取值
+    CommonJS是运行时加载，ES6模块是编译时输出接口
 异步和单线程
     js是单线程的，同时只能做一件事，浏览器和nodejs已经支持JS启动进程，如Web Worker
     js和DOM渲染共用同一个线程，因为JS可以修改DOM结构
