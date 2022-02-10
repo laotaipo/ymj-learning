@@ -9,3 +9,5 @@ module.exports = {
   },
   incCounter: incCounter,
 };
+
+console.log('lib----')

@@ -54,6 +54,7 @@ call apply会直接执行 bind会返回一个新函数
 
 模块
     模块加载方式 CommonJS AMD
+        CommonJS 采用同步加载模块，AMD(require.js)和CMD(sea.js)采用异步加载模块,AMD推崇依赖前置，CMD推崇依赖就近、延迟执行
     ES6模块的设计思想是尽量的静态化，使得编译时就能确定模块的依赖关系，以及输入和输出变量， import和export命令只能在模块的顶层，不能在代码块之中
     CommonJS和AMD模块，都只能在运行时确定这些东西，比如commonJS模块就是对象，输入时必须查找对象属性，没有办法 在编译时做“静态优化”
     ES6模块不是对象，而是通过export命令显示指定输出的代码，再通过import输入
@@ -86,11 +87,32 @@ call apply会直接执行 bind会返回一个新函数
 node模块加载
     浏览器现在有两种模块，一种是es6模块，简称ESM，另一种是commonJS，简称CJS
     CommonJS是nodejs专用，与ES6模块不兼容。他们采用不同的加载方案，从nodejs13.2版本开始，nodeJS默认打开了es6模块支持
-    nodeJS模块要求es6模块采用 .mjs后缀，nodejs遇到.mjs就会认为是es6模块，默认启用严格模式，如果不希望用.mjs可以在package.json中配置"type": "module"，如果这是还需呀使用nodejs模块，需要把
+    nodeJS模块要求es6模块采用 .mjs后缀，nodejs遇到.mjs就会认为是es6模块，默认启用严格模式，如果不希望用.mjs可以在package.json中配置"type": "module"，如果这是还需呀使用nodejs模块，需要把commonjs脚本的后缀名改为.cjs
+    总之：.mjs总是以ES6模块加载，.cjs文件总是以commonJS模块加载，.js文件的加载取决于package.json里type字段
+    注意：es6模块与commonJS模块尽量不要混用
+    package.json的export字段
+        优先级高于main
+        可以实现子目录别名、main的别名、条件加载（利用.这个别名，可以为es6模块和commonjs模块指定不同的入口）
+    commonjs模块加载es6模块
+        commonjs的require()命令不能加载es模块，只能用import()方法加载
+    es6模块加载commonjs模块
+        es6模块的import命令可以加载commonjs模块，但只能整体加载，不能只加载单一输出项，因为es6模块需呀支持静态代码分析
+    同时支持两种格式的模块
+    内部变量
+        es6模块应该是通用的，同一个模块不用修改，就应该可以用在浏览器环境和服务器环境，为此，nodejs规定es6模块中不能使用commonjs模块中特有的变量如：arguments、require、module、exports、__filename、__dirname
+循环加载
+    commonjs
 es6模块和commonJS的差异
     CommonJS模块输出的是一个值的（浅）拷贝，ES6模块输出的是值的引用
         JS引擎对脚本进行静态分析时，遇到import会生成一个只读引用，等到脚本真的执行时，再根据这个只读引用，到被加载的模块里取值
     CommonJS是运行时加载，ES6模块是编译时输出接口
+        因为CommonJS加载的是一个对象（即module.exports属性）
+    require是同步加载模块，import()是异步加载资源
+模块一些零碎的问题
+    require重复引用的问题
+        缓存策略：nodejs会自动缓存经过require引入的文件，使得下次再引入不需要经过文件系统，而是直接从缓存中读取，不过这种缓存方式是通过文件路径定位的，即使两个文件内容完全一致，但是位于不同路径下，还是会缓存两次
+    exports与module.exports的区别
+        exports是对module.exports的引用
 异步和单线程
     js是单线程的，同时只能做一件事，浏览器和nodejs已经支持JS启动进程，如Web Worker
     js和DOM渲染共用同一个线程，因为JS可以修改DOM结构
