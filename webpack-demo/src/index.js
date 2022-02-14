@@ -16,8 +16,9 @@
 // }
 // const xiaoMing = new Student(4)
 // xiaoMing.sayHi()
-
+import './main.css'
+import './main.scss' // 引入 Sass 文件
 import { fn, name, obj } from './a'
-console.log(555)
+console.log(5435)
 fn()
 console.log(name, obj)

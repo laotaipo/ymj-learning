@@ -1,0 +1,1 @@
+!function(){"use strict";console.log(5435),console.log("fn"),console.log("b",{name:"zhangs fan"})}();

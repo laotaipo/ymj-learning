@@ -4,5 +4,5 @@ export function fn () {
 
 export const name = 'b'
 export const obj = {
-    name: 'zhangsan'
+    name: 'zhangs fan'
 }

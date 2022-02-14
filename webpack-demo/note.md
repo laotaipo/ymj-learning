@@ -14,10 +14,21 @@ loader
     webpack只能理解JavaScript和json文件，这是webpack开箱即用的能力，loader让webpack去处理其他类型的文件，并将它们转为有效的模块，以供应用程序使用，以及被添加到依赖图中
     loader有两个属性test：识别出哪些文件会被转换，use：定义在转换时用哪个loader
 插件（plugin）
-    插件可以用来扩展webpack能力，如打包优化、资源管理、注入环境变量等
+    插件可以用来扩展webpack能力，如打包优化、资源管理、注入环境变量等.plugin可以贯穿webpack打包的生命周期，执行不同的任务
 模式（mode）
     development, production 或 none
 浏览器兼容性
     Webpack 支持所有符合 ES5 标准 的浏览器（不支持 IE8 及以下版本）。webpack 的 import() 和 require.ensure() 需要 Promise。如果你想要支持旧版本浏览器，在使用这些表达式之前，还需要 提前加载 polyfill。
 环境(environment)
     Webpack 5 运行于 Node.js v10.13.0+ 的版本。
+
+本地开发和部署线上通常有不同的需求
+本地环境
+    需要更快的构建速度
+    需要打印debug信息
+    需要live reload 或 hot reload
+    需要sourcemap 方便定位问题
+生产环境
+    需要更小的体积 代码压缩+tree-shaking
+    需要进行代码分割
+    需要压缩图片体积
