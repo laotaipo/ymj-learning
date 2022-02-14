@@ -133,6 +133,7 @@ eventloop
     然后继续轮训查找
 
 Promise
+    https://juejin.cn/post/7062155174436929550?utm_source=gold_browser_extension
     三种状态 pending fulfilled rejected
     只能pending -> fulfilled  pending -> rejected 变化不可逆
     then正常返回fulfilled,里面有报错则返回rejected

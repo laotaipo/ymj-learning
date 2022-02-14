@@ -52,23 +52,35 @@ const url = "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fbj-yuantu.fot
 
 // 说明resolve reject后的代码依然会执行
 
-const p = new Promise((resolve, reject) => {
-    setTimeout(() => {
-        const a = Math.random() * 10
-        if (a > 5) {
-            resolve(a)
-            console.log('a----resolve', a)
-        } else {
-            reject(new Error('error'))
-            console.log('a-----reject', a)
-        }
-    }, 20)
-})
-p.then(res => {
-    console.log('~~~', res)
-}).catch(err => {
-    throw new Error('fff')
-    console.log(err)
-}).then(res => {
-    console.log('!!!!', res)
+// const p = new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//         const a = Math.random() * 10
+//         if (a > 5) {
+//             resolve(a)
+//             console.log('a----resolve', a)
+//         } else {
+//             reject(new Error('error'))
+//             console.log('a-----reject', a)
+//         }
+//     }, 20)
+// })
+// p.then(res => {
+//     console.log('~~~', res)
+// }).catch(err => {
+//     throw new Error('fff')
+//     console.log(err)
+// }).then(res => {
+//     console.log('!!!!', res)
+// })
+
+let pro
+try{
+    pro = new Promise((resolve,reject) => {
+        throw Error('err....')
+    })
+}catch(err){
+    console.log('catch',err) // 不会打印
+}
+pro.catch(err=>{
+    console.log('promise---',err) // 会打印
 })
