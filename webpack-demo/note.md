@@ -38,5 +38,27 @@ chunkhash	根据 chunk 生成 hash 值
 contenthash	根据文件内容生成hash 值
 
 优化构建速度
-    speed-measure-webpack-plugin
-    
+    speed-measure-webpack-plugin 查看耗时
+优化resolve配置
+    alias，用于创建别名，简化引用
+    extensions，引入模块时如果不带扩展名，那么 webpack 就会按照 extensions 配置的数组从左到右的顺序去尝试解析模块
+    modules:告诉webpack解析模块时应该搜索的目录
+externals
+    提供了从输出的 bundle 中排除依赖的方法
+缩小范围
+    在配置loader的时候需更精确的指定loader作用的目录或者需要排除的目录
+    include：符合条件的模块进行解析
+    exclude：排除符合条件的模块，不解析
+    exclude优先级更高
+    noParse：不需要解析依赖的第三方大型库
+    IgnorePlugin
+    多进程配置
+        thread-loader
+利用缓存：利用缓存可以大大提升重复构建的速度
+    babel-loader 开启缓存
+    catch-loader
+        缓存一些性能开销较大的loader的处理结果
+        缓存位置：node_modules/.cache/cache-loader
+    catch：持久化缓存
+优化构建结果
+    webpack-bundle-analyzer
