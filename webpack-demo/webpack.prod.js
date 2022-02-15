@@ -12,6 +12,7 @@ module.exports = {
         filename: 'bundle.[contenthash].js',
         path: path.join(__dirname, 'dist')
     },
+    devtool: 'source-map',
     module: {
         rules: [
             {
@@ -39,7 +40,7 @@ module.exports = {
         }),
         new CleanWebpackPlugin(), // 引入插件
         new MiniCssExtractPlugin({ // 添加插件
-            filename: '[name].[hash:8].css'
+            filename: '[name].[chunkhash:8].css'
         }),
     ],
 }

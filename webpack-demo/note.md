@@ -32,3 +32,11 @@ loader
     需要更小的体积 代码压缩+tree-shaking
     需要进行代码分割
     需要压缩图片体积
+
+hash	每次构建生成的唯一 hash 值
+chunkhash	根据 chunk 生成 hash 值
+contenthash	根据文件内容生成hash 值
+
+优化构建速度
+    speed-measure-webpack-plugin
+    

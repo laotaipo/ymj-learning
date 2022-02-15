@@ -22,3 +22,9 @@ import { fn, name, obj } from './a'
 console.log(5435)
 fn()
 console.log(name, obj)
+
+function fnError() {
+    throw new Error('error')
+}
+
+fnError()
