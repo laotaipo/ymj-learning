@@ -62,3 +62,7 @@ externals
     catch：持久化缓存
 优化构建结果
     webpack-bundle-analyzer
+    压缩css optimize-css-assets-webpack-plugin
+    压缩js  terser-webpack-plugin webpack5已内置，无需额外安装
+    清除无用的css purgecss-webpack-plugin
+    

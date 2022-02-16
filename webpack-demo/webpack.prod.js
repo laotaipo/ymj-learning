@@ -6,6 +6,10 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
 // 查看打包结果
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+// 压缩css
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+const TerserPlugin = require('terser-webpack-plugin');
+
 const smp = new SpeedMeasurePlugin();
 const config = {
     mode: 'production',
@@ -59,11 +63,18 @@ const config = {
             filename: '[name].[hash:8].css'
         }),
         new BundleAnalyzerPlugin({
-            // analyzerMode: 'disabled',  // 不启动展示打包报告的http服务器
-            // generateStatsFile: true, // 是否生成stats.json文件
+            analyzerMode: 'disabled',  // 不启动展示打包报告的http服务器
+            generateStatsFile: true, // 是否生成stats.json文件
         })
     ],
-
+    optimization: {
+        minimize: true,
+        minimizer: [
+          // 添加 css 压缩配置
+          new OptimizeCssAssetsPlugin({}),
+          new TerserPlugin({})
+        ]
+    },
 }
 
 module.exports = () => {
