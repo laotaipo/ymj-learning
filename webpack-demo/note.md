@@ -74,3 +74,7 @@ externals
     提升首屏的加载速度，降低首屏加载文件体积，预加载或按需加载
     入口点分割，配置多个打包入口，多页打包
     splitChunks 分包配置
+
+自定义插件
+    compiler对象代表完整的webpack配置环境，这个对象在启动webpack时一次性建立，并配置好所有可操作的设置，包括option,loader和plugin，在webpack环境中应用一个插件时，插件将收到此complier对象的引用。可以用它来访问webpack主环境
+    compilation对象代表了一次资源版本构建，当运行webpack中间件时，每当检测到一个文件变化，就会创建一个新的compilation，从而生成一组新的编译资源。一个compilation对象表现了当前的模块资源、编译生成资源、变化的文件、以及被跟踪依赖的状态信息，compilation对象也提供了很多关键时机的回调，以供插件自定义处理时选择使用

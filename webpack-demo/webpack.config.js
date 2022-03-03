@@ -5,10 +5,10 @@ console.log(333, process.env.NODE_ENV)
 
 module.exports = {
     mode: 'development', // production
-    entry: path.join(__dirname,  'src', 'index.js'),
+    entry: path.join(__dirname, 'src', 'index.js'),
     output: {
         filename: 'bundle.js',
-        path: path.join(__dirname, 'dist')
+        path: path.join(__dirname, 'dist'),
     },
     // devtool: 'source-map',
     module: {
@@ -17,7 +17,7 @@ module.exports = {
                 test: /\.js$/,
                 use: ['babel-loader'],
                 include: path.join(__dirname, 'src'),
-                exclude: /node_modules/
+                exclude: /node_modules/,
             },
             {
                 test: /\.(s[ac]|c)ss$/i,
@@ -26,18 +26,19 @@ module.exports = {
                     MiniCssExtractPlugin.loader,
                     'css-loader',
                     'postcss-loader',
-                    'sass-loader'
-                ]
-            }
-        ]
+                    'sass-loader',
+                ],
+            },
+        ],
     },
     plugins: [
         new HtmlWebpackPlugin({
             template: path.join(__dirname, 'src', 'index.html'),
-            filename: 'index.html'
+            filename: 'index.html',
         }),
-        new MiniCssExtractPlugin({ // 添加插件
-            filename: '[name].[hash:8].css'
+        new MiniCssExtractPlugin({
+            // 添加插件
+            filename: '[name].[hash:8].css',
         }),
     ],
     // devServer: {
