@@ -6,18 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>webpack</title>
     <style>
-        #imgBox {
-            background-image: url('./imgs/44d4d22755cdc381361e5ae634d38955.png');
-        }
     </style>
 </head>
 <body>
-    <h1>
-        webpack demo
-    </h1>
-    <p>hhh</p>
-    <div id="imgBox"></div>
-    <img src="./imgs/44d4d22755cdc381361e5ae634d38955.png" alt="">
+    <button id="crash">
+        崩溃
+    </button>
+    <div id="demo">demo</div>
+    <script>
+        document.getElementById('crash').onclick = function() {
+            console.log(process)
+            // 渲染进程
+        // ipcRenderer.invoke('some-crash', someArgument).then((result) => {
+        //   // ...
+        // })
+
+            process.crash()
+        }
+    </script>
     <script
       src="https://code.jquery.com/jquery-3.1.0.js"
       integrity="sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk="

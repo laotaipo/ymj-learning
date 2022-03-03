@@ -64,5 +64,13 @@ externals
     webpack-bundle-analyzer
     压缩css optimize-css-assets-webpack-plugin
     压缩js  terser-webpack-plugin webpack5已内置，无需额外安装
-    清除无用的css purgecss-webpack-plugin
-    
+    清除无用的css       purgecss-webpack-plugin
+    tree-shaking
+        剔除没有使用的代码，降低包体积
+    Scope Hoisting
+        作用域提升，原理是将多个模块放在同一个作用域下，并重命名防止命名冲突，通过这种方式可以减少函数声明和内存开销。webpack 默认支持，在生产环境下默认开启
+        只支持 es6 代码
+优化运行时体验
+    提升首屏的加载速度，降低首屏加载文件体积，预加载或按需加载
+    入口点分割，配置多个打包入口，多页打包
+    splitChunks 分包配置
