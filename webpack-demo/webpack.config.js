@@ -1,6 +1,7 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const N1WebpackPlugin = require('./src/plugins/No1-webpack-plugin')
 console.log(333, process.env.NODE_ENV)
 
 module.exports = {
@@ -13,6 +14,11 @@ module.exports = {
     // devtool: 'source-map',
     module: {
         rules: [
+            {
+                test: /\.tsx?$/,
+                use: 'ts-loader',
+                exclude: /node_modules/,
+            },
             {
                 test: /\.js$/,
                 use: ['babel-loader'],
@@ -39,6 +45,9 @@ module.exports = {
         new MiniCssExtractPlugin({
             // 添加插件
             filename: '[name].[hash:8].css',
+        }),
+        new N1WebpackPlugin({
+            msg: 'hhhhjjwj',
         }),
     ],
     // devServer: {
