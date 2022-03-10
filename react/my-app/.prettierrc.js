@@ -4,9 +4,9 @@ module.exports = {
     useTabs: false,
     singleQuote: true,
     semi: false,
-    trailingCommas: "es5",
+    trailingCommas: 'es5',
     bracketSpacing: true,
     jsxBracketSameLine: false,
-    arrowParens: "avoid",
-    endOfLine: "auto",
-};
+    arrowParens: 'avoid',
+    endOfLine: 'auto',
+}
