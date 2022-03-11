@@ -1,0 +1,47 @@
+{
+    "cSpell.words": [
+      "apphub",
+      "btns",
+      "cygwin",
+      "Descrip",
+      "fenbi",
+      "hjson",
+      "inited",
+      "IOSS",
+      "localpage",
+      "metrix",
+      "Millis",
+      "minimizeable",
+      "ngrx",
+      "Optioins",
+      "pingd",
+      "pingfore",
+      "pingtas",
+      "PLAYERCORE",
+      "Playout",
+      "plusplus",
+      "qrcode",
+      "reduxjs",
+      "sendout",
+      "signin",
+      "Toasta",
+      "trtc",
+      "typecode",
+      "typecodes",
+      "unmaximize",
+      "uuidv",
+      "webglcontextrestored",
+      "webpreferences",
+      "WYBC",
+      "yuanfudao",
+      "yuanyufao"
+    ],
+    "files.trimTrailingWhitespace": true, // 去掉收尾无用空格
+    "editor.codeActionsOnSave": { // 保存行为
+        "source.fixAll": true, // 自动 fix
+		"source.fixAll.eslint": true
+    },
+    "eslint.alwaysShowStatus": true, // 显示 eslint 状态
+    "editor.tabSize": 4, // tab 用4 个空格
+    "prettier.tabWidth": 4, // 缩进字节数
+}

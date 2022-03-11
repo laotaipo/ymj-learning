@@ -1,0 +1,35 @@
+{
+  "name": "ymj-learning",
+  "version": "1.0.0",
+  "description": "always learning",
+  "main": ".eslintrc.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/laotaipo/ymj-learning.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/laotaipo/ymj-learning/issues"
+  },
+  "homepage": "https://github.com/laotaipo/ymj-learning#readme",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.1.0",
+    "@typescript-eslint/parser": "^4.1.0",
+    "eslint": "^7.8.1",
+    "eslint-config-airbnb-typescript": "^10.0.0",
+    "eslint-import-resolver-typescript": "^2.4.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-prettier": "^3.3.1",
+	"typesafe-actions": "^5.1.0",
+    "typescript": "^3.5.3",
+    "tslint": "5.12.1",
+	"lint-staged": "^10.3.0"
+  },
+  "lint-staged": {
+    "/": "eslint"
+  }
+}
