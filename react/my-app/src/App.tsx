@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react'
-import Components from './components'
-import Water from './waterrrr'
-import Combine from './combine'
-import Lazy from './lazy'
-import Context1 from './context'
+import React from 'react'
+// import Components from './components'
+// import Water from './waterrrr'
+// import Combine from './combine'
+// import Lazy from './lazy'
+// import Context1 from './context'
+import Toggle from './classDemo.tsx'
 
 function App() {
 	return (
@@ -12,9 +13,11 @@ function App() {
             <Water></Water>
             <Combine></Combine>
             <Lazy></Lazy> */}
-			<Context1>
+			{/* <Context1>
 
-			</Context1>
+			</Context1> */}
+			<Toggle>
+			</Toggle>
 		</div>
 	)
 }

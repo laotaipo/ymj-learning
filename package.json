@@ -24,12 +24,15 @@
     "eslint-import-resolver-typescript": "^2.4.0",
     "eslint-plugin-import": "^2.22.0",
     "eslint-plugin-prettier": "^3.3.1",
-	"typesafe-actions": "^5.1.0",
+    "typesafe-actions": "^5.1.0",
     "typescript": "^3.5.3",
     "tslint": "5.12.1",
-	"lint-staged": "^10.3.0"
+    "lint-staged": "^10.3.0"
   },
   "lint-staged": {
     "/": "eslint"
+  },
+  "dependencies": {
+    "prettier": "^2.6.2"
   }
 }
