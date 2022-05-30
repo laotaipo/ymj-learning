@@ -1,0 +1,9 @@
+<!--pages/welcome/welcome.wxml-->
+<view class="container">
+  <image class="avatar" src="../../assets/WechatIMG14.jpeg"></image>
+  <text>pages/weeelcome/welcome.wxml</text>
+  <button></button>
+  <block>
+  <text>222</text>
+  </block>
+</view>

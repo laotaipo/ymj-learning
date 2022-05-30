@@ -10,7 +10,7 @@ import livereload from 'rollup-plugin-livereload'
 import typescript from 'rollup-plugin-typescript2'
 
 export default {
-	input: './learn_module/index.js',
+	input: './src/index.ts',
 	output: [
 		{
 			file: './dist/my-lib-umd.js',
