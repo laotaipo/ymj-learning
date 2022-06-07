@@ -1,0 +1,14 @@
+{
+    "files.trimTrailingWhitespace": true, // 去掉收尾无用空格
+    "editor.codeActionsOnSave": {
+        // 保存行为
+        "source.fixAll": true, // 自动 fix
+        "source.fixAll.eslint": true // eslint 自动 fix
+    },
+    "eslint.alwaysShowStatus": true, // 显示 eslint 状态
+    "eslint.options": {
+        //指定vscode的eslint所处理的文件的后缀
+        "extensions": [".js", ".ts", ".tsx", ".scss"]
+    },
+    "editor.tabSize": 4 // tab 用 4 个空格
+}

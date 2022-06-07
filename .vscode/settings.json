@@ -43,5 +43,9 @@
     },
     "eslint.alwaysShowStatus": true, // 显示 eslint 状态
     "editor.tabSize": 4, // tab 用4 个空格
-    "prettier.tabWidth": 4, // 缩进字节数
+    "prettier.tabWidth": 4,
+    "json.format.enable": true,
+    "editor.formatOnType": true,
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true, // 缩进字节数
 }
