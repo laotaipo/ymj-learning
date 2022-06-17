@@ -27,3 +27,5 @@ Aaa.prototype.sayHi = function () {
 
 const obj = createObject(Aaa, 'ymj', 18)
 console.log(obj)
+
+console.log(999, Array.prototype.constructor === Array)
