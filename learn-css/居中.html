@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<style>
+			.container {
+				height: 200px;
+				margin-bottom: 10px;
+				background-color: red;
+			}
+			.container1 .outer {
+				height: 100%;
+				position: relative;
+			}
+			.container1 .inner {
+				background-color: blue;
+				height: 50px;
+				width: 50px;
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				margin: auto;
+			}
+			.container2 .outer {
+				height: 100%;
+			}
+			.container2 .inner {
+				background-color: blue;
+				height: 50px;
+				width: 50px;
+				margin: 0 auto;
+			}
+			.container3 .outer {
+				height: 100%;
+				text-align: center;
+			}
+			.container3 .inner {
+				background-color: blue;
+				height: 50px;
+				width: 50px;
+				display: inline-block;
+			}
+			.container4 .outer {
+				width: 500px;
+				height: 100px;
+				background-color: green;
+				display: table-cell;
+				vertical-align: middle;
+			}
+			.container4 .inner {
+				height: 50px;
+				width: 50px;
+				background-color: blue;
+				margin: 0 auto;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container container1">
+			<div class="outer">
+				<div class="inner"></div>
+			</div>
+		</div>
+		<div class="container container2">
+			<div class="outer">
+				<div class="inner"></div>
+			</div>
+		</div>
+		<div class="container container3">
+			<div class="outer">
+				<div class="inner"></div>
+			</div>
+		</div>
+		<div class="container container4">
+			<div class="outer">
+				<div class="inner"></div>
+			</div>
+		</div>
+	</body>
+</html>
