@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<script>
+			const code = `\n;(function () {
+
+            })()`
+			const options = ['a', 'b', 'c']
+			const ele = document.createElement('div')
+			var style = document.createElement('style')
+			style.type = 'text/css'
+			style.innerHTML = `#btn{ background-color:red }
+			         #btn {
+			             position: fixed;
+			             width: 50px;
+			             height: 50px;
+
+			         }`
+			document.getElementsByTagName('head').item(0).appendChild(style)
+			const getSelects = function (options) {
+				let res = '<select name="selectList" id="selectItem">'
+				options.forEach(item => {
+					res += `<option ${item === 'b' ? 'selected = "selected"' : ''}> ${item} </option>`
+				})
+				res += '</select>'
+				return res
+			}
+			const selects = getSelects(options)
+			ele.innerHTML = `
+			                         ${selects}
+			                         <button id='btn' class="ele">按钮</<button>
+			            `
+			document.body.appendChild(ele)
+			console.log(document.getElementById('btn'))
+			document.getElementById('selectItem').addEventListener('change', function (e) {
+				console.log(666, document.getElementById('selectItem').value)
+			})
+			document.getElementById('btn').addEventListener('touchmove', function (e) {
+				console.log(999, e, e.touches[0].pageX, e.touches[0].pageY)
+				document.getElementById('btn').style.left = `${e.touches[0].pageX}px`
+				document.getElementById('btn').style.top = `${e.touches[0].pageY}px`
+			})
+			// document.body.addEventListener('touchmove', function (event) {
+			// 	event.preventDefault()
+			// })
+		</script>
+	</body>
+</html>
