@@ -33,6 +33,7 @@
     "/": "eslint"
   },
   "dependencies": {
+    "lodash": "^4.17.21",
     "prettier": "^2.6.2"
   }
 }
