@@ -1,19 +1,27 @@
-const path = require('path')
-const { app, BrowserWindow } = require('electron')
-const isDev = require('electron-is-dev')
-
-let win
-app.on('ready', () => {
-	win = new BrowserWindow({
-		width: 600,
-		height: 300,
-		webPreferences: {
-			nodeIntegration: true,
-		},
+const { app } = require('electron')
+const handleIPC = require('./ipc')
+const { create: createMainWindow, show: showMainWindow, close: closeMainWindow, useRemote } = require('./windows/main')
+const gotTheLock = app.requestSingleInstanceLock()
+if (!gotTheLock) {
+	app.quit()
+} else {
+	app.on('second-instance', () => {
+		showMainWindow()
 	})
-	if (isDev) {
-		win.loadURL('http://localhost:3000')
-	} else {
-		window.loadFile(path.resolve(__dirname, '../renderer/pages/main/index.html'))
-	}
+}
+
+app.on('ready', () => {
+	createMainWindow()
+	useRemote()
+	handleIPC()
+	require('./trayAndMenu')
+})
+
+app.on('before-quit', () => {
+	closeMainWindow()
+})
+
+// 当应用被激活时发出。 各种操作都可以触发此事件, 例如首次启动应用程序、尝试在应用程序已运行时或单击应用程序的坞站或任务栏图标时重新激活它。
+app.on('activate', () => {
+	showMainWindow()
 })
