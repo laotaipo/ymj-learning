@@ -2,11 +2,15 @@
 	<div>
 		<input type="text" name="" id="" :value="value1" @input="handleInput" />
 		<button @click="changeA">路由跳转</button>{{ b }}
+		<a-son data1="'data111'" data2="'222'" v-bind="$attrs" v-on="$listeners" />
 	</div>
 </template>
 
 <script>
+import ASon from './ASon.vue'
+
 export default {
+	components: { ASon },
 	data() {
 		return {
 			a: 1,
@@ -49,7 +53,7 @@ export default {
 		console.log('beforeMount')
 	},
 	mounted() {
-		console.log('j---jj', this.value2)
+		console.log(888, this.$listeners.sendTofu(999))
 	},
 }
 </script>

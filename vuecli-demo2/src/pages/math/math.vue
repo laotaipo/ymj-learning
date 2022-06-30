@@ -1,7 +1,7 @@
 <template>
 	<div>
 		math{{ message }}
-		<MyInput :value2="message2" v-model="message" v-if="dis"></MyInput>
+		<MyInput :value2="message2" v-model="message" v-if="dis" :dd="'dd'" @sendTofu="sendTofu"></MyInput>
 		<button
 			@click="
 				() => {
@@ -34,6 +34,9 @@ export default class Index extends Vue {
 	}
 	goAbout() {
 		this.$router.push('/about')
+	}
+	sendTofu(payload: any) {
+		console.log('----from 孙子', payload)
 	}
 }
 </script>
