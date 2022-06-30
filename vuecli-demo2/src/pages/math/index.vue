@@ -1,13 +1,14 @@
 <template>
-	<div>math</div>
+	<router-view></router-view>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-@Component({})
-export default class Index extends Vue {
-	public created() {
-		console.log('math')
-	}
-}
+import MyInput from '../../components/MyInput.vue'
+@Component({
+	components: {
+		MyInput,
+	},
+})
+export default class Index extends Vue {}
 </script>
