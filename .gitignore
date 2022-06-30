@@ -6,6 +6,7 @@
 /ymj-components/node_modules/
 /large-number/node_modules/
 /remote-control/**/node_modules/
+/remote-control/**/release/
 /vue-ssr-demo/node_modules/
 /vuecli-demo/node_modules/
 /tapable-test/node_modules/

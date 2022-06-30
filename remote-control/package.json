@@ -8,7 +8,9 @@
 		"start:main": "electron .",
 		"start:render": "cd app/renderer/src/main && npm start",
 		"start": "concurrently \"npm run start:render\" \"wait-on http://localhost:3000 && npm run start:main\" ",
-		"build": "cd app/render/src/main && npm run build"
+		"build": "cd app/renderer/src/main && npm run build",
+		"pack:mac": "npm run build && electron-builder --mac",
+		"pack:window": "npm run build && electron-builder --win --ia32"
 	},
 	"keywords": [],
 	"author": "",
@@ -30,6 +32,9 @@
 	"build": {
 		"appId": "com.yang.ming",
 		"productName": "yangmingda",
+		"electronDownload": {
+			"mirror": "https://npm.taobao.org/mirrors/electron/"
+		},
 		"files": "app",
 		"asar": false,
 		"extraFiles": [
@@ -82,7 +87,7 @@
 			"allowToChangeInstallationDirectory": true
 		},
 		"squirrelWindows": {
-			"iconUrl": "https://raw.githubusercontent.com/dengyaolong/geektime-electron/master/img/icon.ico"
+			"iconUrl": "https://github.com/laotaipo/ymj-learning/blob/main/remote-control/resource/icon.ico"
 		}
 	}
 }
