@@ -1,7 +1,6 @@
 const path = require('path')
 const { BrowserWindow } = require('electron')
 const isDev = require('electron-is-dev')
-const { app } = require('electron')
 let win
 let willQuitApp = false
 function create() {

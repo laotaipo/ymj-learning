@@ -1,7 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { ipcRenderer } from 'electron'
-import { Menu, MenuItem } from '@electron/remote'
+import * as remote from '@electron/remote'
+import log from 'electron-log'
+
 import './App.css'
+const { Menu, MenuItem } = remote
+console.log(8888, remote.getGlobal('a'))
 function App() {
 	const [remoteCode, setRemoteCode] = useState('')
 	const [localCode, setLocalCode] = useState('')
@@ -32,6 +36,7 @@ function App() {
 		menu.popup()
 	}
 	useEffect(() => {
+		log.error('renderer error')
 		login()
 		ipcRenderer.on('control-state-change', handleControlState)
 		setTimeout(function () {
