@@ -1,0 +1,3 @@
+namespace Shape {
+	const
+}

@@ -24,6 +24,7 @@ if (!gotTheLock) {
 		useRemote()
 		handleIPC()
 		require('./trayAndMenu')
+		console.log('****', process.platform)
 	})
 
 	app.on('before-quit', () => {
