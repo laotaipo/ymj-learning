@@ -4,7 +4,9 @@ import Index from './index.vue'
 import About from './about.vue'
 import Math from './math.vue'
 
-Vue.use(VueRouter)
+// import * as VueAwesomeSwiper from 'vue-awesome-swiper'
+// import 'swiper/css/swiper.css'
+
 const routes: Array<RouteConfig> = [
 	{
 		path: '/',
@@ -28,6 +30,8 @@ const routes: Array<RouteConfig> = [
 const router = new VueRouter({
 	routes,
 })
+
+Vue.use(VueRouter)
 
 new Vue({
 	router,

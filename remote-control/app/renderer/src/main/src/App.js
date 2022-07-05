@@ -2,14 +2,19 @@ import React, { useState, useEffect, useRef } from 'react'
 import { ipcRenderer } from 'electron'
 import * as remote from '@electron/remote'
 import log from 'electron-log'
+import { readFileSync } from 'fs'
 
 import './App.css'
+import { screenRecord } from './screenRecord/screenRecord'
 const { Menu, MenuItem } = remote
 console.log(8888, remote.getGlobal('a'))
+const url =
+	'file:///Users/xiaohuawen/Documents/ymj-learning/remote-control/app/renderer/src/main/src/screenRecord/index.html'
 function App() {
 	const [remoteCode, setRemoteCode] = useState('')
 	const [localCode, setLocalCode] = useState('')
 	const [controlText, setControlText] = useState('')
+	const [videoUrl, setVideoUrl] = useState('')
 	const test = useRef('')
 	const login = async () => {
 		let code = await ipcRenderer.invoke('login')
@@ -35,6 +40,16 @@ function App() {
 		menu.append(new MenuItem({ label: '复制', role: 'copy' }))
 		menu.popup()
 	}
+	const startScreenRecord = () => {
+		console.log('开始录屏')
+		screenRecord.start()
+	}
+	const stopScreenRecord = async () => {
+		console.log('结束录屏')
+		const url = await screenRecord.stop()
+		console.log('---r----', url)
+		setVideoUrl(url)
+	}
 	useEffect(() => {
 		log.error('renderer error')
 		login()
@@ -49,7 +64,31 @@ function App() {
 
 	return (
 		<div className="App">
-			{controlText === '' ? (
+			<img
+				src={
+					'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fnimg.ws.126.net%2F%3Furl%3Dhttp%253A%252F%252Fdingyue.ws.126.net%252F2021%252F0713%252F8402c662j00qw5rb6002fd200u000mhg00420031.jpg%26thumbnail%3D650x2147483647%26quality%3D80%26type%3Djpg&refer=http%3A%2F%2Fnimg.ws.126.net&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1659446678&t=7aadbdc1ccd867bac8aced00ac999b1b'
+				}
+			></img>
+			<img
+				src={
+					'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fnimg.ws.126.net%2F%3Furl%3Dhttp%253A%252F%252Fdingyue.ws.126.net%252F2021%252F0713%252F8402c662j00qw5rb6002fd200u000mhg00420031.jpg%26thumbnail%3D650x2147483647%26quality%3D80%26type%3Djpg&refer=http%3A%2F%2Fnimg.ws.126.net&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1659446678&t=7aadbdc1ccd867bac8aced00ac999b1b'
+				}
+			></img>
+			{/* <webview className="webview" id="foo" src={url}></webview> */}
+			{/* <video width="320" height="240" controls>
+				<source src="/Users/xiaohuawen/Desktop/1656770989694618.mp4" type="video/mp4" />
+			</video> */}
+			{/* <video width="320" height="240" controls>
+				<source src={blobU} type="video/webm" />
+			</video> */}
+			<button onClick={startScreenRecord}>开始录屏</button>
+			<button onClick={stopScreenRecord}>结束录屏</button>
+			{videoUrl && (
+				<video width="320" height="240" controls>
+					<source src={videoUrl} type="video/webm" />
+				</video>
+			)}
+			{/* {controlText === '' ? (
 				<>
 					<div>
 						你的控制码
@@ -67,7 +106,7 @@ function App() {
 				</>
 			) : (
 				<div>{controlText}</div>
-			)}
+			)} */}
 		</div>
 	)
 }

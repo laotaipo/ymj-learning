@@ -1,5 +1,6 @@
 const path = require('path')
 const glob = require('glob')
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 
 const context = process.env.CONTEXT || process.cwd()
 
@@ -52,5 +53,12 @@ module.exports = defineConfig({
 				default: false,
 			},
 		})
+		config.plugin('analyzer').use(BundleAnalyzerPlugin, [
+			{
+				analyzerMode: 'static',
+				reportFilename: 'report.html',
+				openAnalyzer: false,
+			},
+		])
 	},
 })

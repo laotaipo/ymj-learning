@@ -13,6 +13,7 @@ function create() {
 			devTools: true,
 			nodeIntegration: true,
 			enableRemoteModule: true,
+			webviewTag: true, //开启webview标签渲染
 		},
 	})
 	win.on('close', e => {
