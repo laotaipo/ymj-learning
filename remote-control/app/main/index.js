@@ -1,8 +1,10 @@
-const { app } = require('electron')
+const { app, contentTracing } = require('electron')
 const log = require('electron-log')
 const handleIPC = require('./ipc')
 const { create: createMainWindow, show: showMainWindow, close: closeMainWindow, useRemote } = require('./windows/main')
 const gotTheLock = app.requestSingleInstanceLock()
+const { getHeapStatistics } = require('process')
+
 global['a'] = 1
 global['b'] = 2
 
@@ -25,6 +27,8 @@ if (!gotTheLock) {
 		handleIPC()
 		require('./trayAndMenu')
 		console.log('****', process.platform)
+		const aa = getHeapStatistics()
+		console.log(998, aa)
 	})
 
 	app.on('before-quit', () => {
@@ -40,5 +44,16 @@ if (!gotTheLock) {
 		log.error('error')
 		log.warn('warn')
 		log.info('info')
+	})
+	app.whenReady().then(() => {
+		;(async () => {
+			await contentTracing.startRecording({
+				included_categories: ['*'],
+			})
+			console.log('Tracing started')
+			await new Promise(resolve => setTimeout(resolve, 10000))
+			const path = await contentTracing.stopRecording()
+			console.log('追踪数据记录到： ' + path)
+		})()
 	})
 }

@@ -2,10 +2,11 @@ import React, { useState, useEffect, useRef } from 'react'
 import { ipcRenderer } from 'electron'
 import * as remote from '@electron/remote'
 import log from 'electron-log'
-import { readFileSync } from 'fs'
+import { getHeapStatistics } from 'process'
 
 import './App.css'
 import { screenRecord } from './screenRecord/screenRecord'
+import fs from 'fs'
 const { Menu, MenuItem } = remote
 console.log(8888, remote.getGlobal('a'))
 const url =
@@ -50,7 +51,16 @@ function App() {
 		console.log('---r----', url)
 		setVideoUrl(url)
 	}
+	const deleteFile = () => {
+		// console.log()
+		fs.unlink('/Users/xiaohuawen/Desktop/hostskkk', err => {
+			console.log(err)
+		})
+	}
+	// const worker = new WebWorker()
 	useEffect(() => {
+		const aaa = getHeapStatistics()
+		console.log('aaa=====', aaa)
 		log.error('renderer error')
 		login()
 		ipcRenderer.on('control-state-change', handleControlState)
@@ -83,6 +93,7 @@ function App() {
 			</video> */}
 			<button onClick={startScreenRecord}>开始录屏</button>
 			<button onClick={stopScreenRecord}>结束录屏</button>
+			<button onClick={deleteFile}>删除</button>
 			{videoUrl && (
 				<video width="320" height="240" controls>
 					<source src={videoUrl} type="video/webm" />
